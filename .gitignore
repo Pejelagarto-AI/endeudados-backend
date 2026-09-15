@@ -1,0 +1,8 @@
+# Artefactos locales del CLI de Supabase
+supabase/.temp/
+supabase/.branches/
+
+# Credenciales - NUNCA commitear
+.env
+.env.*
+*.key
