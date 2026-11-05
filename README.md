@@ -50,8 +50,11 @@ punto de partida verificable.
 # instalar el CLI (una vez)
 # https://github.com/supabase/cli/releases
 
-# enlazar con el proyecto (una vez, pide la contraseña de la base)
+# enlazar con el proyecto (una vez; basta con haber hecho supabase login)
 supabase link --project-ref nuuqonentwzzhptkjjyh
+
+# ver que migraciones estan aplicadas en produccion y cuales solo en local
+supabase migration list
 
 # crear una migración nueva
 supabase migration new nombre_descriptivo
@@ -63,6 +66,16 @@ supabase db reset
 # aplicarla a producción (solo después de que el PR esté aprobado)
 supabase db push
 ```
+
+## Historial de migraciones
+
+Hasta el 23-sep el proyecto no tenia tabla de migraciones: el esquema se habia
+construido desde el dashboard y Supabase no sabia que ya estaba aplicado. Eso
+hacia que `supabase db push` intentara crear todo de nuevo.
+
+Ya quedo resuelto: las seis migraciones del repo estan marcadas como aplicadas
+en produccion, asi que `supabase migration list` muestra local y remoto iguales
+y `db push` solo aplica lo nuevo.
 
 ## Estado actual y deuda conocida
 
