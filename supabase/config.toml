@@ -232,15 +232,22 @@ otp_length = 6
 # Number of seconds before the email OTP expires (defaults to 1 hour).
 otp_expiry = 3600
 
-# Use a production-ready SMTP server
+# SMTP propio (EN-65). En PRODUCCIÓN está activo: Gmail con contraseña de
+# aplicación, 30 correos por hora (antes 2, el servidor de pruebas de Supabase).
+# Se configura por la API de administración o en el dashboard:
+# Authentication > Emails > SMTP Settings.
+#
+# En LOCAL se deja apagado a propósito: los correos quedan en Mailpit
+# (http://127.0.0.1:54324) y no le llegan a nadie. Para probar el SMTP real en
+# local, descomentar y exportar SMTP_USER y SMTP_PASS.
 # [auth.email.smtp]
 # enabled = true
-# host = "smtp.sendgrid.net"
+# host = "smtp.gmail.com"
 # port = 587
-# user = "apikey"
-# pass = "env(SENDGRID_API_KEY)"
-# admin_email = "admin@email.com"
-# sender_name = "Admin"
+# user = "env(SMTP_USER)"
+# pass = "env(SMTP_PASS)"
+# admin_email = "env(SMTP_USER)"
+# sender_name = "Endeudados"
 
 # Uncomment to customize email template
 # [auth.email.template.invite]
